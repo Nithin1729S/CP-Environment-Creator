@@ -56,6 +56,7 @@ int32_t main()
 
     except FileExistsError:
         print("File already exists")
+        subprocess.run(['code', fullPath])
     return fullPath
 
 def main():

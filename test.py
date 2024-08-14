@@ -2,24 +2,6 @@ import os
 import sys
 import subprocess
 from datetime import datetime
-def create_workspace_file(fullPath):
-    workspace_file_path = os.path.join(fullPath, 'workspace.code-workspace')
-    workspace_content = {
-        "folders": [
-            {"path": "."}
-        ],
-        "settings": {},
-        "launch": {},
-        "files": [
-            {"path": "A.cpp", "isOpen": True, "viewColumn": 1},
-            {"path": "in.txt", "isOpen": True, "viewColumn": 2},
-            {"path": "out.txt", "isOpen": True, "viewColumn": 2}
-        ]
-    }
-    with open(workspace_file_path, 'w') as wf:
-        import json
-        json.dump(workspace_content, wf, indent=4)
-    return workspace_file_path
 
 def create_contest_folder(contestName='Codeforces'):
     basePath='/home/nithin/Codes/CP/Contests/'
@@ -70,11 +52,19 @@ int32_t main()
             with open(file_path, 'w') as f:
                 if file.endswith('.cpp'):
                     f.write(cppTmpl) 
-        # Create workspace file
-        workspace_file = create_workspace_file(fullPath)
-        # Open the workspace in VS Code
-        subprocess.run(['code', workspace_file])
+        subprocess.run(['code', fullPath])
 
     except FileExistsError:
         print("File already exists")
+        subprocess.run(['code', fullPath])
     return fullPath
+
+def main():
+    if len(sys.argv) != 2:
+        print("Give the Contest Name!")
+        sys.exit(1)
+    contestName = sys.argv[1]
+    create_contest_folder(contestName)
+
+if __name__ == "__main__":
+    main()
