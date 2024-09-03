@@ -22,6 +22,8 @@ using namespace std;
 #define clr(x) memset(x,0,sizeof(x))
 #define sortUni(v) sort(all(v)), v.erase(unique(all(v)), v.end())
 #define fast_io ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define f0(i,n)  for(int i=0;i<(int)n;i++)
+#define f1(i,n)  for(int i=1;i<=(int)n;i++)
 #define test int t;cin>>t;while(t--)
 #define take(a,n) vi a(n); f0(i,n) cin >> a[i];
 #define give(a,n) f0(i,n){cout << a[i] << ' ';}cout << endl;
